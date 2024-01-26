@@ -23,6 +23,18 @@ class Mahasiswa extends Controller {
     {
         $rowCountTambah = $this->model('MahasiswaModel')->tambahDataMahasiswa($_POST);
         if( $rowCountTambah > 0) {
+
+            // set flash message
+            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+
+            // direct ke mahasiswa
+            header('Location: ' . BASEURL . '/mahasiswa');
+            exit;
+        } else {
+            // set flash message
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+
+            // direct ke mahasiswa
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         }

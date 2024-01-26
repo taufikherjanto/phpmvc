@@ -1,5 +1,11 @@
 <div class="container">
     <h1 class="mt-4">Mahasiswa</h1>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <?php Flasher::flash(); ?>
+        </div>
+    </div>
     <div class="row">
         <div class="col-6">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
@@ -10,7 +16,9 @@
             <ul class="list-group">
                 <?php foreach( $data['mhs'] as $mhs ) : ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <?= $mhs['nama']; ?>
+                        <?= $mhs['nama']; ?>, 
+                        <?= $mhs['nim']; ?>, 
+                        <?= $mhs['jurusan']; ?>
                         <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>" class="badge badge-primary">Detail</a>
                     </li>
                 <?php endforeach; ?>

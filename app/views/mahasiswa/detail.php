@@ -1,4 +1,5 @@
 <div class="container">
+    <h1 class="mt-4">Detail Mahasiswa</h1>
     <div class="card" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title"><?= $data['mhs']['nama']; ?></h5>
