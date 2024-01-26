@@ -21,8 +21,8 @@ class Mahasiswa extends Controller {
 
     public function tambah()
     {
-        $rowCountTambah = $this->model('MahasiswaModel')->tambahDataMahasiswa($_POST);
-        if( $rowCountTambah > 0) {
+        $rowCount = $this->model('MahasiswaModel')->tambahDataMahasiswa($_POST);
+        if( $rowCount > 0) {
 
             // set flash message
             Flasher::setFlash('berhasil', 'ditambahkan', 'success');
@@ -42,8 +42,8 @@ class Mahasiswa extends Controller {
 
     public function hapus($id)
     {
-        $rowCountHapus = $this->model('MahasiswaModel')->hapusDataMahasiswa($id);
-        if( $rowCountHapus > 0) {
+        $rowCount = $this->model('MahasiswaModel')->hapusDataMahasiswa($id);
+        if( $rowCount > 0) {
 
             // set flash message
             Flasher::setFlash('berhasil', 'dihapus', 'success');
@@ -54,6 +54,32 @@ class Mahasiswa extends Controller {
         } else {
             // set flash message
             Flasher::setFlash('gagal', 'dihapus', 'danger');
+
+            // direct ke mahasiswa
+            header('Location: ' . BASEURL . '/mahasiswa');
+            exit;
+        }
+    }
+
+    public function getubah()
+    {
+        echo json_encode($this->model('MahasiswaModel')->getMahasiswaById($_POST['id']));
+    }
+
+    public function ubah()
+    {
+        $rowCount = $this->model('MahasiswaModel')->ubahDataMahasiswa($_POST);
+        if( $rowCount > 0) {
+
+            // set flash message
+            Flasher::setFlash('berhasil', 'diubah', 'success');
+
+            // direct ke mahasiswa
+            header('Location: ' . BASEURL . '/mahasiswa');
+            exit;
+        } else {
+            // set flash message
+            Flasher::setFlash('gagal', 'diubah', 'danger');
 
             // direct ke mahasiswa
             header('Location: ' . BASEURL . '/mahasiswa');
